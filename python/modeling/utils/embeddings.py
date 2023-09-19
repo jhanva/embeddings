@@ -20,9 +20,9 @@ def encode_model(arr: np.array) -> np.array:
 
     """
     model_yml = read_yaml(Path.config)
-    print(model_yml['embedding_model'])
+
     model = SentenceTransformer(model_yml['embedding_model'])
-    print(model_yml['batch_size'])
+
     embeddings = model.encode(
         arr, batch_size=model_yml['batch_size'], show_progress_bar=True
     )

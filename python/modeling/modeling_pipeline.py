@@ -5,7 +5,7 @@ from python.modeling.utils.embeddings import train_model
 
 def executor():
     data = feature_pipeline.executor()
-    print('here')
-    data = train_model(data, save=True)
 
-    print(data)
+    data = train_model(data, save=False)
+
+    return data

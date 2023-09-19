@@ -5,7 +5,7 @@ import pandas as pd
 
 def find_closest_sentences(
     input_vector: np.array, df: pd.DataFrame, column_name: str, topn: int = 1
-) -> pd.DataFrame:
+) -> pd.Series:
     """Finds the closest rows in a DataFrame with embeddings to a given input
         vector based on Euclidean distance.
 
@@ -26,4 +26,4 @@ def find_closest_sentences(
     )
     closest_rows = df.nsmallest(topn, 'distance')
 
-    return closest_rows['text']
+    return closest_rows['text'].values[0]
