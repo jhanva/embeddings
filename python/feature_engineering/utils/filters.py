@@ -3,12 +3,8 @@ import re
 
 import nltk
 import pandas as pd
-
-from gensim.parsing.preprocessing import (
-    strip_numeric,
-    strip_punctuation,
-    strip_short,
-)
+from gensim.parsing.preprocessing import (strip_numeric, strip_punctuation,
+                                          strip_short)
 from nltk.corpus import stopwords
 
 
@@ -87,9 +83,9 @@ def clean_text(df: pd.DataFrame, column: str) -> pd.DataFrame:
         list_words.append(clean_word)
 
     # Update the DataFrame column with the cleaned text
-    df[column] = list_words
+    df[f'{column}_embedding'] = list_words
 
-    cond_length = df[column].apply(lambda x: len(x.split()))
+    cond_length = df[f'{column}_embedding'].apply(lambda x: len(x.split()))
     df = df[cond_length > 3]
 
     return df
