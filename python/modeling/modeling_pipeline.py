@@ -1,11 +1,17 @@
+# External libraries
+import pandas as pd
+
 # Own libraries
-from python.feature_engineering import feature_pipeline
+from python.metadata.path import Path
 from python.modeling.utils.embeddings import train_model
 
 
-def executor():
-    data = feature_pipeline.executor()
+def executor(save: bool) -> pd.DataFrame:
+    """Execute the modeling pipeline."""
 
-    data = train_model(data, save=False)
+    data = pd.read_parquet(Path.clean_data)
 
+    data = train_model(data, save=save)
+
+    print('Modeling pipeline finished!')
     return data

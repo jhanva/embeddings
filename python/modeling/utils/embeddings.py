@@ -20,11 +20,12 @@ def encode_model(arr: np.array) -> np.array:
 
     """
     model_yml = read_yaml(Path.config)
+    embeddings_model = model_yml['embedding_model']
 
-    model = SentenceTransformer(model_yml['embedding_model'])
+    model = SentenceTransformer(embeddings_model['model'])
 
     embeddings = model.encode(
-        arr, batch_size=model_yml['batch_size'], show_progress_bar=True
+        arr, batch_size=embeddings_model['batch_size'], show_progress_bar=True
     )
 
     return embeddings
@@ -48,6 +49,6 @@ def train_model(df: pd.DataFrame, save: bool = False) -> pd.DataFrame:
     df['ids'] = df['ids'].astype(str)
 
     if save:
-        df.to_parquet(Path.output_model, index=False)
+        df.to_parquet(Path.features_model, index=False)
 
     return df

@@ -1,3 +1,17 @@
-embedding_model: sentence-transformers/all-MiniLM-L6-v2
+pipeline: train
 
-batch_size: 64
+embedding_model:
+    model: sentence-transformers/all-MiniLM-L6-v2
+    batch_size: 20
+
+train:
+    feature_pipeline:
+        save: True
+    modeling_pipeline:
+        save: True
+
+eval:
+    feature_pipeline:
+        save: False
+    modeling_pipeline:
+        save: False

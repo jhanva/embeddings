@@ -10,6 +10,9 @@ from gensim.parsing.preprocessing import (
 )
 from nltk.corpus import stopwords
 
+# Own libraries
+from python.metadata.path import Path
+
 
 def create_df(text: str) -> pd.DataFrame:
     """Creates a DataFrame from a long text, splitting it into sentences.
@@ -29,12 +32,15 @@ def create_df(text: str) -> pd.DataFrame:
     return df
 
 
-def clean_text(df: pd.DataFrame, column: str) -> pd.DataFrame:
+def clean_text(
+    df: pd.DataFrame, column: str, save: bool = False
+) -> pd.DataFrame:
     """Cleans and preprocesses text data in a specified DataFrame column.
 
     Args:
         df: The DataFrame containing the text data.
         column: The name of the column to be cleaned.
+        save: option to save data.
 
     Returns:
         A DataFrame with the specified column cleaned and preprocessed.
@@ -64,6 +70,8 @@ def clean_text(df: pd.DataFrame, column: str) -> pd.DataFrame:
             flags=re.MULTILINE,
         )
 
+        string = string.replace('\n', '')
+
         # Remove punctuation
         string = strip_punctuation(string)
 
@@ -90,5 +98,8 @@ def clean_text(df: pd.DataFrame, column: str) -> pd.DataFrame:
 
     cond_length = df[f'{column}_embedding'].apply(lambda x: len(x.split()))
     df = df[cond_length > 3]
+
+    if save:
+        df.to_parquet(Path.clean_data, index=False)
 
     return df
