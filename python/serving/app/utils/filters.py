@@ -15,7 +15,7 @@ def question_answer(sentence: str):
     data['embeddings'] = data['embeddings'].apply(np.array)
 
     answer = find_closest_sentences(
-        input_vector=question, df=data, column_name='embeddings', topn=3
+        input_vector=question, df=data, column_name='embeddings', topn=5
     )
 
     return answer
