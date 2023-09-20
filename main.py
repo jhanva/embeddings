@@ -1,5 +1,5 @@
-from python.serving.app.app import interface
-
+# Own libraries
+from python.serving.app.app import run_demo
 
 if __name__ == '__main__':
-    interface()
+    run_demo()

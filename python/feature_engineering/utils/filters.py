@@ -3,8 +3,11 @@ import re
 
 import nltk
 import pandas as pd
-from gensim.parsing.preprocessing import (strip_numeric, strip_punctuation,
-                                          strip_short)
+from gensim.parsing.preprocessing import (
+    strip_numeric,
+    strip_punctuation,
+    strip_short,
+)
 from nltk.corpus import stopwords
 
 

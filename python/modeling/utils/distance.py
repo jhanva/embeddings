@@ -26,4 +26,4 @@ def find_closest_sentences(
     )
     closest_rows = df.nsmallest(topn, 'distance')
 
-    return closest_rows['text'].values[0]
+    return closest_rows['text'].values
