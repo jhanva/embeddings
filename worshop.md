@@ -26,3 +26,11 @@ for text data, while Euclidean distance is often a good choice for image data.
 * Computational efficiency: Some distance criteria are more computationally 
 efficient than others. This is important to consider if the distance 
 criterion will be used in a large-scale application.
+
+### 4. What do you think that could make these types of systems more robust in terms of semantics and functionality?
+
+* Regularization.
+* Using larger and more diverse datasets.
+* Incorporating additional knowledge into the training process.
+* Using more sophisticated training algorithms.
+* Developing new evaluation metrics.
